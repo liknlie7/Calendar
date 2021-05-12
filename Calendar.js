@@ -1,6 +1,8 @@
 'use strict';
 
 {
+    const todayButton = document.getElementById('todayButton')
+
     const today = new Date();
     let year = today.getFullYear();
     let month = today.getMonth();
@@ -132,6 +134,15 @@
 
         createCalendar();
     });
+
+    todayButton.addEventListener('mouseover',() =>{
+        todayButton.style.background = 'honeydew';
+        todayButton.classList.add('todayButton2')
+    })
+    todayButton.addEventListener('mouseleave',() =>{
+        todayButton.style.background = 'white';
+        todayButton.classList.remove('todayButton2')
+    })
 
     createCalendar();
 }
