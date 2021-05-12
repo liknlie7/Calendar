@@ -25,6 +25,14 @@ body{
      background-color:white;
  }
 
+ #scheduleButton{
+     display:inline-block;
+     width:150px;
+     height: 30px;
+     background-color: white;
+     margin-left: 50px;
+ }
+
 #prevButton,
 #nextButton{
     cursor: pointer;
