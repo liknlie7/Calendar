@@ -112,59 +112,77 @@
         renderWeeks();
     }
 
-    prevButton.addEventListener('click', () => {
-        month--;
-        if (month < 0) {
-            year--;
-            month = 11;
-        }
-        createCalendar();
-    });
+    function prevButtonBehavior(){
+        prevButton.addEventListener('click', () => {
+            month--;
+            if (month < 0) {
+                year--;
+                month = 11;
+            }
+            createCalendar();
+        });
 
-    nextButton.addEventListener('click', () => {
-        month++;
-        if (month > 11) {
-            year++;
-            month = 0;
-        }
-        createCalendar();
-    });
+        prevButton.addEventListener('mouseover',() =>{
+            prevButton.style.background = 'honeydew';
+            prevButton.style.borderRadius = '50%';
+            prevButton.classList.add('prevButton2')
+        })
 
-    document.getElementById('todayButton').addEventListener('click', () => {
-        year = today.getUTCFullYear();
-        month = today.getMonth();
+        prevButton.addEventListener('mouseleave',() =>{
+            prevButton.style.background = 'white';
+            prevButton.classList.remove('prevButton2')
+        })    
+    }
 
-        createCalendar();
-    });
+    function nextButtonBehavior(){
+        nextButton.addEventListener('click', () => {
+            month++;
+            if (month > 11) {
+                year++;
+                month = 0;
+            }
+            createCalendar();
+        });
 
-    todayButton.addEventListener('mouseover',() =>{
-        todayButton.style.background = 'honeydew';
-        todayButton.classList.add('todayButton2')
-    })
-    todayButton.addEventListener('mouseleave',() =>{
-        todayButton.style.background = 'white';
-        todayButton.classList.remove('todayButton2')
-    })
+        nextButton.addEventListener('mouseover',() =>{
+            nextButton.style.background = 'honeydew';
+            nextButton.style.borderRadius = '50%';
+            nextButton.classList.add('nextButton2')
+        })
 
-    prevButton.addEventListener('mouseover',() =>{
-        prevButton.style.background = 'honeydew';
-        prevButton.style.borderRadius = '50%';
-        prevButton.classList.add('prevButton2')
-    })
-    prevButton.addEventListener('mouseleave',() =>{
-        prevButton.style.background = 'white';
-        prevButton.classList.remove('prevButton2')
-    })    
-    nextButton.addEventListener('mouseover',() =>{
-        nextButton.style.background = 'honeydew';
-        nextButton.style.borderRadius = '50%';
-        nextButton.classList.add('nextButton2')
-    })
-    nextButton.addEventListener('mouseleave',() =>{
-        nextButton.style.background = 'white';
-        nextButton.classList.remove('nextButton2')
-    })
+        nextButton.addEventListener('mouseleave',() =>{
+            nextButton.style.background = 'white';
+            nextButton.classList.remove('nextButton2')
+        })
+    }
+
+    function todayButtonBehavior(){
+       todayButton.addEventListener('click', () => {
+            year = today.getUTCFullYear();
+            month = today.getMonth();
+    
+            createCalendar();
+        });
+    
+        todayButton.addEventListener('mouseover',() =>{
+            todayButton.style.background = 'honeydew';
+            todayButton.classList.add('todayButton2')
+        })
+
+        todayButton.addEventListener('mouseleave',() =>{
+            todayButton.style.background = 'white';
+            todayButton.classList.remove('todayButton2')
+        })
+    }
+
+    function buttonBehavior(){
+        prevButtonBehavior();
+        nextButtonBehavior();
+        todayButtonBehavior();
+    }
 
     createCalendar();
+
+    buttonBehavior();
 }
 
