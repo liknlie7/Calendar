@@ -4,6 +4,7 @@
     const todayButton = document.getElementById('todayButton');
     const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
+    const scheduleButton = document.getElementById('scheduleButton');
 
     const today = new Date();
     let year = today.getFullYear();
@@ -175,11 +176,25 @@
         })
     }
 
+    function scheduleButtonBehavior(){
+        scheduleButton.addEventListener('mouseover',() =>{
+            scheduleButton.style.background = 'honeydew';
+            scheduleButton.classList.add('scheduleButton2')
+        })
+
+        scheduleButton.addEventListener('mouseleave',() =>{
+            scheduleButton.style.background = 'white';
+            scheduleButton.classList.remove('scheduleButton2')
+        })
+    }
+
     function buttonBehavior(){
         prevButtonBehavior();
         nextButtonBehavior();
         todayButtonBehavior();
+        scheduleButtonBehavior();
     }
+
 
     createCalendar();
 
