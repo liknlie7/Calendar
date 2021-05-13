@@ -199,5 +199,9 @@
     createCalendar();
 
     buttonBehavior();
+
+    document.getElementById('scheduleButton').addEventListener('click', ()=>{
+       window.open("https://www.sejuku.net/blog/48540",null,'width=500,height=500,toolbar=no,manubar=no,scrollbars=no,location=no');
+    })
 }
 
