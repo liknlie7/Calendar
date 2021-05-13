@@ -96,7 +96,7 @@ td.today{
     box-shadow: 0 10px 25px 0 rgba(8, 24, 29, 0.7);
 }
 
-#inputForm .topBar{
+#inputForm .inputFormTopBar{
     background-color: rgb(211, 211, 211);
     bottom: 50px;
     font-size: 24px;
