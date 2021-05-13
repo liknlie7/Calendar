@@ -92,6 +92,8 @@ td.today{
     right: 700px;
     top: 200px;
     bottom: 200px;
+    width: 500px;
+    height: 500px;
     margin: auto;
     box-shadow: 0 10px 25px 0 rgba(8, 24, 29, 0.7);
 }
@@ -107,7 +109,7 @@ td.today{
     position: absolute;
     top: 0px;
     bottom: 510px;
-    left: 490px;
+    left: 470px;
     right: 0px;
     margin: auto;
     text-align: center;

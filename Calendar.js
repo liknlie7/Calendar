@@ -113,7 +113,7 @@
         renderWeeks();
     }
 
-    function prevButtonBehavior(){
+    function prevButtonBehavior() {
         prevButton.addEventListener('click', () => {
             month--;
             if (month < 0) {
@@ -123,19 +123,19 @@
             createCalendar();
         });
 
-        prevButton.addEventListener('mouseover',() =>{
+        prevButton.addEventListener('mouseover', () => {
             prevButton.style.background = 'honeydew';
             prevButton.style.borderRadius = '50%';
             prevButton.classList.add('prevButton2')
         })
 
-        prevButton.addEventListener('mouseleave',() =>{
+        prevButton.addEventListener('mouseleave', () => {
             prevButton.style.background = 'white';
             prevButton.classList.remove('prevButton2')
-        })    
+        })
     }
 
-    function nextButtonBehavior(){
+    function nextButtonBehavior() {
         nextButton.addEventListener('click', () => {
             month++;
             if (month > 11) {
@@ -145,50 +145,50 @@
             createCalendar();
         });
 
-        nextButton.addEventListener('mouseover',() =>{
+        nextButton.addEventListener('mouseover', () => {
             nextButton.style.background = 'honeydew';
             nextButton.style.borderRadius = '50%';
             nextButton.classList.add('nextButton2')
         })
 
-        nextButton.addEventListener('mouseleave',() =>{
+        nextButton.addEventListener('mouseleave', () => {
             nextButton.style.background = 'white';
             nextButton.classList.remove('nextButton2')
         })
     }
 
-    function todayButtonBehavior(){
-       todayButton.addEventListener('click', () => {
+    function todayButtonBehavior() {
+        todayButton.addEventListener('click', () => {
             year = today.getUTCFullYear();
             month = today.getMonth();
-    
+
             createCalendar();
         });
-    
-        todayButton.addEventListener('mouseover',() =>{
+
+        todayButton.addEventListener('mouseover', () => {
             todayButton.style.background = 'honeydew';
             todayButton.classList.add('todayButton2')
         })
 
-        todayButton.addEventListener('mouseleave',() =>{
+        todayButton.addEventListener('mouseleave', () => {
             todayButton.style.background = 'white';
             todayButton.classList.remove('todayButton2')
         })
     }
 
-    function scheduleButtonBehavior(){
-        scheduleButton.addEventListener('mouseover',() =>{
+    function scheduleButtonBehavior() {
+        scheduleButton.addEventListener('mouseover', () => {
             scheduleButton.style.background = 'honeydew';
             scheduleButton.classList.add('scheduleButton2')
         })
 
-        scheduleButton.addEventListener('mouseleave',() =>{
+        scheduleButton.addEventListener('mouseleave', () => {
             scheduleButton.style.background = 'white';
             scheduleButton.classList.remove('scheduleButton2')
         })
     }
 
-    function buttonBehavior(){
+    function buttonBehavior() {
         prevButtonBehavior();
         nextButtonBehavior();
         todayButtonBehavior();
@@ -201,7 +201,13 @@
     buttonBehavior();
 
     document.getElementById('scheduleButton').addEventListener('click', ()=>{
-       window.open("https://www.sejuku.net/blog/48540",null,'width=500,height=500,toolbar=no,manubar=no,scrollbars=no,location=no');
+        document.getElementById('inputForm').style.display = 'inline';
+    })
+
+    const exit = document.getElementsByClassName('exit');
+
+    exit[0].addEventListener('click',()=>{
+        document.getElementById('inputForm').style.display = 'none';
     })
 }
 
