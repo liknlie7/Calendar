@@ -118,3 +118,16 @@ td.today{
     z-index: 2;
     cursor: pointer;
 }
+
+#inputForm .formText{
+    border: 0;
+    border-bottom: solid 1px;
+    font-size: 32px;
+    margin-left: 50px;
+    margin-top: 32px;
+}
+
+#inputForm .formText:focus{
+    outline: 0;
+    box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+}
