@@ -42,12 +42,24 @@
         </tbody>
     </table>
 
-    <span id="inputForm">
-        <div class="inputFormTopBar">　</div>
-        <div class="exit">×</div>
-        <input type="text" name="title" class="formText" width = "24" placeholder="タイトルの入力">
-    </span>
-    
+    <form>
+        <span id="inputForm">
+            <div class="inputFormTopBar">　</div>
+            <div class="exit">×</div>
+            <ul>
+                <li>
+                    <input type="text" name="title" class="formText" width="24" placeholder="タイトルの入力" required>
+                </li>
+                <li>
+                    <input type="date" name="date" class="formDate" required>
+                </li>
+                <li>
+                    <input type="time" name="time" class="formTime" required>
+                </li>
+            </ul>
+            <input type="submit" name="submit" value="完了" class="formSubmit">
+        </span>
+    </form>
 
     <script type="text/javascript" src="Calendar.js"></script>
 </body>

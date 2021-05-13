@@ -93,7 +93,7 @@ td.today{
     top: 200px;
     bottom: 200px;
     width: 500px;
-    height: 500px;
+    height: 400px;
     margin: auto;
     box-shadow: 0 10px 25px 0 rgba(8, 24, 29, 0.7);
 }
@@ -118,16 +118,34 @@ td.today{
     z-index: 2;
     cursor: pointer;
 }
+ul li{
+    list-style: none;
+    margin-left: 20px;
+}
 
 #inputForm .formText{
     border: 0;
     border-bottom: solid 1px;
     font-size: 32px;
-    margin-left: 50px;
     margin-top: 32px;
 }
 
 #inputForm .formText:focus{
     outline: 0;
     box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+}
+
+#inputForm .formDate{
+    margin-top: 50px;
+    font-size: 24px;
+}
+
+#inputForm .formTime{
+    margin-top: 50px;
+    font-size: 24px;
+}
+
+#inputForm .formSubmit{
+    font-size: 20px;
+    margin-left: 80%;
 }
