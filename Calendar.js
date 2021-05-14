@@ -10,16 +10,9 @@
     let year = today.getFullYear();
     let month = today.getMonth();
 
-    console.log(today);
-    console.log(month);
-    console.log(year);
-    console.log(today.getDay());
-    console.log(today.getDate());
-    console.log(today.getMonth());
-
-     let text = null;
-     let date = null;
-     let time = null;
+    let inputText = null;
+    let inputDate = null;
+    let inputTime = null;
 
     function getCalendarHead() {
         const dates = [];
@@ -77,7 +70,7 @@
             ...getCalendarBody(),
             ...getCalendarTail(),
         ];
-        console.log(dates);
+
         const weeks = [];
         const weeksCount = dates.length / 7;
 
@@ -96,7 +89,7 @@
                 }
                 if (date.isDisabled) {
                     td.classList.add('disabled');
-                }else{
+                } else {
                     td.classList.add('day');
                 }
 
@@ -119,7 +112,6 @@
         //　パッドスタート
         const date = `${year}年${String(month + 1)}月`;
         document.getElementById('date').textContent = date;
-        console.log(document.getElementById('date').textContent);
     }
 
     function createCalendar() {
@@ -214,50 +206,43 @@
 
     buttonBehavior();
 
-    document.getElementById('scheduleButton').addEventListener('click', ()=>{
+    document.getElementById('scheduleButton').addEventListener('click', () => {
         document.getElementById('inputForm').style.display = 'inline';
     })
 
     const exit = document.getElementsByClassName('exit');
 
-    exit[0].addEventListener('click',()=>{
+    exit[0].addEventListener('click', () => {
         document.getElementById('inputForm').style.display = 'none';
     })
 
-        const submit = document.getElementsByClassName('formSubmit');
+    const submit = document.getElementsByClassName('formSubmit');
 
-    submit[0].addEventListener('click',()=>{
-         text = document.getElementsByClassName('formText');
-         date = document.getElementsByClassName('formDate');
-         time = document.getElementsByClassName('formTime');
+    submit[0].addEventListener('click', () => {
+        inputText = document.getElementsByClassName('formText');
+        inputDate = document.getElementsByClassName('formDate');
+        inputTime = document.getElementsByClassName('formTime');
 
-        if(text[0].value == null && date[0].value == null && time[0].value == 0){
+        if (inputText[0].value == null && inputDate[0].value == null && inputTime[0].value == 0) {
             document.getElementById('inputForm').style.display = 'none';
         }
 
         //入力された日付を年月日で分ける
-        const inputYear = date[0].value.substr(0,4);
-        var inputMonth = date[0].value.substr(5,2);
-        const inputDay = date[0].value.substr(8,2);
+        const inputYear = inputDate[0].value.substr(0, 4);
+        var inputMonth = inputDate[0].value.substr(5, 2);
+        const inputDay = inputDate[0].value.substr(8, 2);
 
-        if(inputMonth.charAt(0) == "0"){
-            inputMonth = Number(date[0].value.substr(6,1) - 1);
-            console.log(inputMonth);
-        }else{
-            inputMonth = Number(date[0].value.substr(5,2) - 1);
-            console.log(inputMonth);
+        if (inputMonth.charAt(0) == "0") {
+            inputMonth = Number(inputDate[0].value.substr(6, 1) - 1);
+        } else {
+            inputMonth = Number(inputDate[0].value.substr(5, 2) - 1);
         }
 
-        //保存が必要
-        
         //指定された月のカレンダーを作る
         year = inputYear;
         month = inputMonth;
 
         var a = document.getElementsByClassName('day');
-        console.log(a[Number(inputDay)]);
-
-        console.log(month);
 
         createCalendar();
 
@@ -265,10 +250,28 @@
         var div = document.createElement('div');
 
         a[Number(inputDay) - 1].appendChild(div);
-        div.innerHTML = text[0].value;
-        console.log(text[0].value);
+        div.innerHTML = inputText[0].value;
 
-        console.log(a[Number(inputDay)]);
+        // 必要なデータを格納しておく
+        let detalist = [];
+        detalist.unshift({
+            year: inputYear,
+            month: inputMonth,
+            day: inputDay,
+            title: inputText[0],
+            time: inputTime[0]
+        });
+
+        // データがない場所に保存する
+        for (let i = 1; i < 1000; i++) {
+            let temp = "detalist";
+            let str = temp + i;
+
+            if(localStorage.getItem(str) != null)
+            {
+                localStorage.setItem(str, JSON.stringify(detalist))    
+            }
+        }
     })
 }
 
