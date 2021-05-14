@@ -96,6 +96,7 @@ td.today{
     height: 400px;
     margin: auto;
     box-shadow: 0 10px 25px 0 rgba(8, 24, 29, 0.7);
+    display: none;
 }
 
 #inputForm .inputFormTopBar{
