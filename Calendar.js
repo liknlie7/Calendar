@@ -286,7 +286,7 @@
                 console.log(hage[0].year);
             }
         }
-        
+
         // inputdayから-1した日にテキストを作る
         for (let i = 1; i < schedule.length; i++) {
             var obj = Object.values(schedule[i]);
@@ -298,9 +298,10 @@
 
                 var a = document.getElementsByClassName('day');
                 var div = document.createElement('div');
+                div.classList.add("schedule");
 
                 a[obj[0].day - 1].appendChild(div);
-                div.innerHTML = obj[0].time + obj[0].title;
+                div.innerHTML = obj[0].time + " " + obj[0].title;
                 console.log(obj[0].title);
                 }
             }

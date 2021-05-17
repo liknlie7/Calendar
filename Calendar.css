@@ -70,6 +70,10 @@ th,td{
     height: 120px;
 }
 
+td{
+    width: 120px;
+}
+
 tbody td:first-child{
     color: red;
 }
@@ -149,4 +153,10 @@ ul li{
 #inputForm .formSubmit{
     font-size: 20px;
     margin-left: 80%;
+}
+
+.schedule{
+    font-weight: normal;
+    color: black;
+    text-align: left;
 }
