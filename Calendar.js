@@ -216,6 +216,14 @@
         document.getElementById('inputForm').style.display = 'none';
     })
 
+    exit[0].addEventListener('mouseover', () => {
+        exit[0].style.background = 'rgb(221,221,221)';
+    })
+
+    exit[0].addEventListener('mouseleave', () => {
+        exit[0].style.background = 'rgb(211,211,211)';
+    })
+
     const submit = document.getElementsByClassName('formSubmit');
 
     let inputText;
