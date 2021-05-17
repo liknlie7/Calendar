@@ -228,8 +228,6 @@
             document.getElementById('inputForm').style.display = 'none';
         }
 
-        
-
         //入力された日付を年月日で分ける
         const inputYear = inputDate[0].value.substr(0, 4);
         var inputMonth = inputDate[0].value.substr(5, 2);
@@ -280,10 +278,6 @@
             if (localStorage.getItem(str) != null) {
                 // parseで取り出さないと綺麗に取り出せない
                 schedule[i] = JSON.parse(localStorage.getItem(str));
-                // schedule.push(localStorage.getItem(str));
-                console.log(Object.values(schedule[1]));
-                var hage = Object.values(schedule[1]);
-                console.log(hage[0].year);
             }
         }
 
@@ -292,9 +286,7 @@
             var obj = Object.values(schedule[i]);
             if(obj[0].year == year)
             {
-                console.log("入った");
                 if(obj[0].month + 1 == month + 1){
-                    console.log("年月一致")
 
                 var a = document.getElementsByClassName('day');
                 var div = document.createElement('div');
@@ -302,7 +294,6 @@
 
                 a[obj[0].day - 1].appendChild(div);
                 div.innerHTML = obj[0].time + " " + obj[0].title;
-                console.log(obj[0].title);
                 }
             }
         }
