@@ -1,14 +1,16 @@
 'use strict';
 
 {
+    // 年月日と時刻の取得
     const today = new Date();
     let year = today.getFullYear();
     let month = today.getMonth();
 
+    // カレンダー1週目取得
     function getCalendarHead() {
-        const dates = [];
-        const d = new Date(year, month, 0).getDate();
-        const n = new Date(year, month, 1).getDay();
+        let dates = [];
+        let d = new Date(year, month, 0).getDate(); // 前の月の最終日が取得できる
+        let n = new Date(year, month, 1).getDay();  // 曜日が取得できる。1日が何曜日にあるのか
 
         for (let i = 0; i < n; i++) {
             dates.unshift({
@@ -20,6 +22,7 @@
         return dates;
     }
 
+    // カレンダー最後の週以外取得
     function getCalendarBody() {
         const dates = [];
         const lastDate = new Date(year, month + 1, 0).getDate();
@@ -39,6 +42,7 @@
         return dates;
     }
 
+    // カレンダー最後の週取得
     function getCalendarTail() {
         const dates = [];
         const lastDay = new Date(year, month + 1, 0).getDay();
@@ -54,6 +58,7 @@
         return dates;
     }
 
+    // 週の表示
     function renderWeeks() {
         const dates = [
             // スプレッド構文
@@ -90,6 +95,7 @@
         });
     }
 
+    // カレンダー作成
     function clearCalendar() {
         const tbody = document.querySelector('tbody');
 
@@ -98,20 +104,14 @@
         }
     }
 
+    // 今日の日付を表示
     function renderDate() {
         // テンプレートリテラル
-        //　パッドスタート
         const date = `${year}年${String(month + 1)}月`;
         document.getElementById('date').textContent = date;
     }
 
-    function createCalendar() {
-        clearCalendar();
-        renderDate();
-        renderWeeks();
-        setSchedule();
-    }
-
+    // 前の月へ戻るボタン
     function prevButtonBehavior() {
         let prevButton = document.getElementById('prevButton');
 
@@ -136,6 +136,7 @@
         })
     }
 
+    // 次の月へ進むボタン
     function nextButtonBehavior() {
         let nextButton = document.getElementById('nextButton');
 
@@ -160,6 +161,7 @@
         })
     }
 
+    // 現在の月へボタン
     function todayButtonBehavior() {
         let todayButton = document.getElementById('todayButton');
 
@@ -181,6 +183,7 @@
         })
     }
 
+    // スケジュール追加ボタン
     function scheduleButtonBehavior() {
         let scheduleButton = document.getElementById('scheduleButton');
 
@@ -199,86 +202,81 @@
         })
     }
 
-    function buttonBehavior() {
-        prevButtonBehavior();
-        nextButtonBehavior();
-        todayButtonBehavior();
-        scheduleButtonBehavior();
+    // スケジュールを閉じるボタン
+    function exitButtonBehavior(){
+        const exit = document.getElementsByClassName('exit');
+
+        exit[0].addEventListener('click', () => {
+            document.getElementById('inputForm').style.display = 'none';
+        })
+
+        exit[0].addEventListener('mouseover', () => {
+            exit[0].style.background = 'rgb(221,221,221)';
+        })
+
+        exit[0].addEventListener('mouseleave', () => {
+            exit[0].style.background = 'rgb(211,211,211)';
+        })
     }
 
-    createCalendar();
+    // 入力したデータを送信
+    function submitButtonBehavior(){
+        let submit = document.getElementsByClassName('formSubmit');
 
-    buttonBehavior();
-
-    const exit = document.getElementsByClassName('exit');
-
-    exit[0].addEventListener('click', () => {
-        document.getElementById('inputForm').style.display = 'none';
-    })
-
-    exit[0].addEventListener('mouseover', () => {
-        exit[0].style.background = 'rgb(221,221,221)';
-    })
-
-    exit[0].addEventListener('mouseleave', () => {
-        exit[0].style.background = 'rgb(211,211,211)';
-    })
-
-    const submit = document.getElementsByClassName('formSubmit');
-
-    let inputText;
-    let inputDate;
-    let inputTime;
-
-    submit[0].addEventListener('click', () => {
-        inputText = document.getElementsByClassName('formText');
-        inputDate = document.getElementsByClassName('formDate');
-        inputTime = document.getElementsByClassName('formTime');
-
-        if (inputText[0].value == null && inputDate[0].value == null && inputTime[0].value == 0) {
-            document.getElementById('inputForm').style.display = 'none';
-        }
-
-        //入力された日付を年月日で分ける
-        const inputYear = inputDate[0].value.substr(0, 4);
-        var inputMonth = inputDate[0].value.substr(5, 2);
-        const inputDay = inputDate[0].value.substr(8, 2);
-
-        if (inputMonth.charAt(0) == "0") {
-            inputMonth = Number(inputDate[0].value.substr(6, 1) - 1);
-        } else {
-            inputMonth = Number(inputDate[0].value.substr(5, 2) - 1);
-        }
-
-        //指定された月のカレンダーを作る
-        year = inputYear;
-        month = inputMonth;
-
-        // 必要なデータを格納しておく
-        var detalist = [];
-        detalist.unshift({
-            year: inputYear,
-            month: inputMonth,
-            day: inputDay,
-            title: inputText[0].value,
-            time: inputTime[0].value
-        });
-
-
-        // データがない場所に保存する
-        for (var i = 1; i < 1000; i++) {
-            var temp = "detalist";
-            var str = temp + i;
-
-            if(localStorage.getItem(str)){
-                continue;
-            }else{
-            localStorage.setItem(str,JSON.stringify(detalist));
-                break;
+        let inputText;
+        let inputDate;
+        let inputTime;
+    
+        submit[0].addEventListener('click', () => {
+            inputText = document.getElementsByClassName('formText');
+            inputDate = document.getElementsByClassName('formDate');
+            inputTime = document.getElementsByClassName('formTime');
+    
+            if (inputText[0].value == null && inputDate[0].value == null && inputTime[0].value == 0) {
+                document.getElementById('inputForm').style.display = 'none';
             }
-        }
-    })
+    
+            //入力された日付を年月日で分ける
+            let inputYear = inputDate[0].value.substr(0, 4);
+            let inputMonth = inputDate[0].value.substr(5, 2);
+            let inputDay = inputDate[0].value.substr(8, 2);
+    
+            if (inputMonth.charAt(0) == "0") {
+                inputMonth = Number(inputDate[0].value.substr(6, 1) - 1);
+            } else {
+                inputMonth = Number(inputDate[0].value.substr(5, 2) - 1);
+            }
+    
+            //指定された月のカレンダーを作る
+            year = inputYear;
+            month = inputMonth;
+    
+            // 必要なデータを格納しておく
+            var detalist = [];
+            detalist.unshift({
+                year: inputYear,
+                month: inputMonth,
+                day: inputDay,
+                title: inputText[0].value,
+                time: inputTime[0].value
+            });
 
+            // データがない場所に保存する
+            for (var i = 1; i < 1000; i++) {
+                var temp = "detalist";
+                var str = temp + i;
+    
+                if (localStorage.getItem(str)) {
+                    continue;
+                } else {
+                    localStorage.setItem(str, JSON.stringify(detalist));
+                    break;
+                }
+            }
+        })    
+    }
+
+    // スケジュールをセット
     function setSchedule() {
         var schedule = [];
 
@@ -295,18 +293,39 @@
         // inputdayから-1した日にテキストを作る
         for (let i = 1; i < schedule.length; i++) {
             var obj = Object.values(schedule[i]);
-            if(obj[0].year == year)
-            {
-                if(obj[0].month + 1 == month + 1){
+            if (obj[0].year == year) {
+                if (obj[0].month + 1 == month + 1) {
 
-                var a = document.getElementsByClassName('day');
-                var div = document.createElement('div');
-                div.classList.add("schedule");
+                    var a = document.getElementsByClassName('day');
+                    var div = document.createElement('div');
+                    div.classList.add("schedule");
 
-                a[obj[0].day - 1].appendChild(div);
-                div.innerHTML = obj[0].time + " " + obj[0].title;
+                    a[obj[0].day - 1].appendChild(div);
+                    div.innerHTML = obj[0].time + " " + obj[0].title;
                 }
             }
         }
     }
+
+    function buttonBehavior() {
+        prevButtonBehavior();
+        nextButtonBehavior();
+        todayButtonBehavior();
+        scheduleButtonBehavior();
+        exitButtonBehavior();
+        submitButtonBehavior();
+    }
+
+    function createCalendar() {
+        clearCalendar();
+        renderDate();
+        renderWeeks();
+        setSchedule();
+    }
+
+    // カレンダー作成
+    createCalendar();
+
+    // ボタン動作
+    buttonBehavior();
 }
