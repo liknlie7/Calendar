@@ -118,6 +118,7 @@
         clearCalendar();
         renderDate();
         renderWeeks();
+        setSchedule();
     }
 
     function prevButtonBehavior() {
@@ -227,6 +228,8 @@
             document.getElementById('inputForm').style.display = 'none';
         }
 
+        
+
         //入力された日付を年月日で分ける
         const inputYear = inputDate[0].value.substr(0, 4);
         var inputMonth = inputDate[0].value.substr(5, 2);
@@ -242,36 +245,62 @@
         year = inputYear;
         month = inputMonth;
 
-        var a = document.getElementsByClassName('day');
-
-        createCalendar();
-
-        // inputdayから-1した日にテキストを作る
-        var div = document.createElement('div');
-
-        a[Number(inputDay) - 1].appendChild(div);
-        div.innerHTML = inputText[0].value;
-
         // 必要なデータを格納しておく
-        let detalist = [];
+        var detalist = [];
         detalist.unshift({
             year: inputYear,
             month: inputMonth,
             day: inputDay,
-            title: inputText[0],
-            time: inputTime[0]
+            title: inputText[0].value,
+            time: inputTime[0].value
         });
 
-        // データがない場所に保存する
-        for (let i = 1; i < 1000; i++) {
-            let temp = "detalist";
-            let str = temp + i;
 
-            if(localStorage.getItem(str) != null)
-            {
-                localStorage.setItem(str, JSON.stringify(detalist))    
+        // データがない場所に保存する
+        for (var i = 1; i < 1000; i++) {
+            var temp = "detalist";
+            var str = temp + i;
+
+            if(localStorage.getItem(str)){
+                continue;
+            }else{
+            localStorage.setItem(str,JSON.stringify(detalist));
+                break;
             }
         }
     })
+
+    function setSchedule() {
+        var schedule = [];
+
+        for (let i = 1; i < 1000; i++) {
+            var temp = "detalist";
+            var str = temp + i;
+
+            if (localStorage.getItem(str) != null) {
+                // parseで取り出さないと綺麗に取り出せない
+                schedule.push(JSON.parse(localStorage.getItem(str)));
+            }
+        }
+        // inputdayから-1した日にテキストを作る
+
+        for (let i = 0; i < schedule.length; i++) {
+            if(schedule[i].year == year)
+            {
+                if(Number(schedule[i].month) + 1 == month + 1){
+                    console.log("年月一致")
+
+                var a = document.getElementsByClassName('day');
+                var div = document.createElement('div');
+
+                a[Number(schedule[i].day) - 1].appendChild(div);
+                div.innerHTML = schedule[i].title;
+                console.log(schedule[i].title);
+                }
+            }
+            console.log(schedule[0]);
+            console.log(schedule.length);
+        }
+    }
 }
 
