@@ -1,18 +1,9 @@
 'use strict';
 
 {
-    const todayButton = document.getElementById('todayButton');
-    const prevButton = document.getElementById('prevButton');
-    const nextButton = document.getElementById('nextButton');
-    const scheduleButton = document.getElementById('scheduleButton');
-
     const today = new Date();
     let year = today.getFullYear();
     let month = today.getMonth();
-
-    let inputText = null;
-    let inputDate = null;
-    let inputTime = null;
 
     function getCalendarHead() {
         const dates = [];
@@ -122,6 +113,8 @@
     }
 
     function prevButtonBehavior() {
+        let prevButton = document.getElementById('prevButton');
+
         prevButton.addEventListener('click', () => {
             month--;
             if (month < 0) {
@@ -144,6 +137,8 @@
     }
 
     function nextButtonBehavior() {
+        let nextButton = document.getElementById('nextButton');
+
         nextButton.addEventListener('click', () => {
             month++;
             if (month > 11) {
@@ -166,6 +161,8 @@
     }
 
     function todayButtonBehavior() {
+        let todayButton = document.getElementById('todayButton');
+
         todayButton.addEventListener('click', () => {
             year = today.getUTCFullYear();
             month = today.getMonth();
@@ -185,6 +182,8 @@
     }
 
     function scheduleButtonBehavior() {
+        let scheduleButton = document.getElementById('scheduleButton');
+
         scheduleButton.addEventListener('mouseover', () => {
             scheduleButton.style.background = 'honeydew';
             scheduleButton.classList.add('scheduleButton2')
@@ -193,6 +192,10 @@
         scheduleButton.addEventListener('mouseleave', () => {
             scheduleButton.style.background = 'white';
             scheduleButton.classList.remove('scheduleButton2')
+        })
+
+        document.getElementById('scheduleButton').addEventListener('click', () => {
+            document.getElementById('inputForm').style.display = 'inline';
         })
     }
 
@@ -207,10 +210,6 @@
 
     buttonBehavior();
 
-    document.getElementById('scheduleButton').addEventListener('click', () => {
-        document.getElementById('inputForm').style.display = 'inline';
-    })
-
     const exit = document.getElementsByClassName('exit');
 
     exit[0].addEventListener('click', () => {
@@ -218,6 +217,10 @@
     })
 
     const submit = document.getElementsByClassName('formSubmit');
+
+    let inputText;
+    let inputDate;
+    let inputTime;
 
     submit[0].addEventListener('click', () => {
         inputText = document.getElementsByClassName('formText');
@@ -299,4 +302,3 @@
         }
     }
 }
-
