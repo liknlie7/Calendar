@@ -279,27 +279,31 @@
 
             if (localStorage.getItem(str) != null) {
                 // parseで取り出さないと綺麗に取り出せない
-                schedule.push(JSON.parse(localStorage.getItem(str)));
+                schedule[i] = JSON.parse(localStorage.getItem(str));
+                // schedule.push(localStorage.getItem(str));
+                console.log(Object.values(schedule[1]));
+                var hage = Object.values(schedule[1]);
+                console.log(hage[0].year);
             }
         }
+        
         // inputdayから-1した日にテキストを作る
-
-        for (let i = 0; i < schedule.length; i++) {
-            if(schedule[i].year == year)
+        for (let i = 1; i < schedule.length; i++) {
+            var obj = Object.values(schedule[i]);
+            if(obj[0].year == year)
             {
-                if(Number(schedule[i].month) + 1 == month + 1){
+                console.log("入った");
+                if(obj[0].month + 1 == month + 1){
                     console.log("年月一致")
 
                 var a = document.getElementsByClassName('day');
                 var div = document.createElement('div');
 
-                a[Number(schedule[i].day) - 1].appendChild(div);
-                div.innerHTML = schedule[i].title;
-                console.log(schedule[i].title);
+                a[obj[0].day - 1].appendChild(div);
+                div.innerHTML = obj[0].time + obj[0].title;
+                console.log(obj[0].title);
                 }
             }
-            console.log(schedule[0]);
-            console.log(schedule.length);
         }
     }
 }
