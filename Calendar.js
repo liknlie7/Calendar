@@ -113,7 +113,7 @@
 
     // 前の月へ戻るボタン
     function prevButtonBehavior() {
-        let prevButton = document.getElementById('prevButton');
+        const prevButton = document.getElementById('prevButton');
 
         prevButton.addEventListener('click', () => {
             month--;
@@ -138,7 +138,7 @@
 
     // 次の月へ進むボタン
     function nextButtonBehavior() {
-        let nextButton = document.getElementById('nextButton');
+        const nextButton = document.getElementById('nextButton');
 
         nextButton.addEventListener('click', () => {
             month++;
@@ -163,7 +163,7 @@
 
     // 現在の月へボタン
     function todayButtonBehavior() {
-        let todayButton = document.getElementById('todayButton');
+        const todayButton = document.getElementById('todayButton');
 
         todayButton.addEventListener('click', () => {
             year = today.getUTCFullYear();
@@ -185,7 +185,7 @@
 
     // スケジュール追加ボタン
     function scheduleButtonBehavior() {
-        let scheduleButton = document.getElementById('scheduleButton');
+        const scheduleButton = document.getElementById('scheduleButton');
 
         scheduleButton.addEventListener('mouseover', () => {
             scheduleButton.style.background = 'honeydew';
@@ -221,7 +221,7 @@
 
     // 入力したデータを送信
     function submitButtonBehavior(){
-        let submit = document.getElementsByClassName('formSubmit');
+        const submit = document.getElementsByClassName('formSubmit');
 
         let inputText;
         let inputDate;
@@ -237,9 +237,9 @@
             }
     
             //入力された日付を年月日で分ける
-            let inputYear = inputDate[0].value.substr(0, 4);
+            const inputYear = inputDate[0].value.substr(0, 4);
             let inputMonth = inputDate[0].value.substr(5, 2);
-            let inputDay = inputDate[0].value.substr(8, 2);
+            const inputDay = inputDate[0].value.substr(8, 2);
     
             if (inputMonth.charAt(0) == "0") {
                 inputMonth = Number(inputDate[0].value.substr(6, 1) - 1);
@@ -250,6 +250,8 @@
             //指定された月のカレンダーを作る
             year = inputYear;
             month = inputMonth;
+
+            createCalendar();
     
             // 必要なデータを格納しておく
             var detalist = [];
